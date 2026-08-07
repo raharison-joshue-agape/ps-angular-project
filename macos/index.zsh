@@ -7,6 +7,7 @@ _angular_aliases_root="${0:A:h}"
 . "$_angular_aliases_root/angularMaterial.zsh"
 . "$_angular_aliases_root/primeng.zsh"
 . "$_angular_aliases_root/ngZorro.zsh"
+. "$_angular_aliases_root/ngxBootstrap.zsh"
 
 new_angular_base() {
     local PROJECT_NAME="${1:-}"
@@ -52,10 +53,12 @@ new_angular() {
     echo "     Enterprise-ready UI component library"
     echo "  4. Angular CLI + ng-zorro-antd"
     echo "     Ant Design components (ng-zorro)"
+    echo "  5. Angular CLI + ngx-bootstrap"
+    echo "     Bootstrap 5 components with ngx-bootstrap"
     echo ""
 
     local PROJECT_CHOICE
-    read -r "PROJECT_CHOICE?Enter choice (1-4): "
+    read -r "PROJECT_CHOICE?Enter choice (1-5): "
 
     if [ -z "$PROJECT_NAME" ]; then
         read -r "PROJECT_NAME?Project name: "
@@ -65,6 +68,7 @@ new_angular() {
         2) new_angular_material "$PROJECT_NAME" ;;
         3) new_angular_primeng "$PROJECT_NAME" ;;
         4) new_angular_ngzorro "$PROJECT_NAME" ;;
+        5) new_angular_ngxbootstrap "$PROJECT_NAME" ;;
         *)
             echo "Choix invalide. Création d'un projet Angular de base."
             new_angular_base "$PROJECT_NAME"
