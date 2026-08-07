@@ -5,6 +5,7 @@
 _angular_aliases_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 . "$_angular_aliases_root/angularMaterial.sh"
+. "$_angular_aliases_root/primeng.sh"
 
 new_angular_base() {
     local PROJECT_NAME="${1:-}"
@@ -46,10 +47,12 @@ new_angular() {
     echo "     Plain Angular + TypeScript template"
     echo "  2. Angular CLI + Angular Material"
     echo "     Official Material Design components"
+    echo "  3. Angular CLI + PrimeNG"
+    echo "     Enterprise-ready UI component library"
     echo ""
 
     local PROJECT_CHOICE
-    read -r -p "Enter choice (1-2): " PROJECT_CHOICE
+    read -r -p "Enter choice (1-3): " PROJECT_CHOICE
 
     if [ -z "$PROJECT_NAME" ]; then
         read -r -p "Project name: " PROJECT_NAME
@@ -57,6 +60,7 @@ new_angular() {
 
     case "$PROJECT_CHOICE" in
         2) new_angular_material "$PROJECT_NAME" ;;
+        3) new_angular_primeng "$PROJECT_NAME" ;;
         *)
             echo "Choix invalide. Création d'un projet Angular de base."
             new_angular_base "$PROJECT_NAME"
