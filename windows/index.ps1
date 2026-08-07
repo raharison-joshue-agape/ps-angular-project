@@ -1,5 +1,6 @@
 . "$PSScriptRoot\angularMaterial.ps1"
 . "$PSScriptRoot\primeng.ps1"
+. "$PSScriptRoot\ngZorro.ps1"
 
 <#
 .SYNOPSIS
@@ -63,6 +64,7 @@ function New-Angular {
         @{ Id = 1; Name = "Angular CLI (base)"; Desc = "Plain Angular + TypeScript template" }
         @{ Id = 2; Name = "Angular CLI + Angular Material"; Desc = "Official Material Design components" }
         @{ Id = 3; Name = "Angular CLI + PrimeNG"; Desc = "Enterprise-ready UI component library" }
+        @{ Id = 4; Name = "Angular CLI + ng-zorro-antd"; Desc = "Ant Design components (ng-zorro)" }
     )
 
     foreach ($c in $CHOICES) {
@@ -78,6 +80,7 @@ function New-Angular {
     switch ($PROJECT_CHOICE) {
         "2" { New-AngularMaterial $PROJECT_NAME }
         "3" { New-AngularPrimeNg $PROJECT_NAME }
+        "4" { New-AngularNgZorro $PROJECT_NAME }
         default {
             Write-Host "Choix invalide. Création d'un projet Angular de base." -ForegroundColor Yellow
             New-AngularBase $PROJECT_NAME

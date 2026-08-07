@@ -2,7 +2,7 @@
 
 # 🅰️ Angular Project Aliases — Windows
 
-### Scaffold des projets **Angular + Angular Material + TypeScript** pré-configurés directement depuis **PowerShell**
+### Scaffold des projets **Angular + Angular Material / PrimeNG / ng-zorro-antd + TypeScript** pré-configurés directement depuis **PowerShell**
 
 Des fonctions courtes et mémorisables qui remplacent les longues séquences de configuration par une seule commande.
 
@@ -11,6 +11,8 @@ Des fonctions courtes et mémorisables qui remplacent les longues séquences de 
 [![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Angular](https://img.shields.io/badge/Angular-latest-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
 [![Angular Material](https://img.shields.io/badge/Angular%20Material-3-757575?style=for-the-badge&logo=angular&logoColor=white)](https://material.angular.io/)
+[![PrimeNG](https://img.shields.io/badge/PrimeNG-latest-16A34A?style=for-the-badge&logo=primeng&logoColor=white)](https://primeng.org/)
+[![ng-zorro](https://img.shields.io/badge/ng--zorro%20antd-latest-1677FF?style=for-the-badge&logo=antdesign&logoColor=white)](https://ng.ant.design/)
 
 </div>
 
@@ -33,13 +35,14 @@ Des fonctions courtes et mémorisables qui remplacent les longues séquences de 
 Au lieu de taper de longues commandes de configuration répétitives, vous utilisez des fonctions courtes qui scaffoldent un projet **Angular + TypeScript** complet et pré-configuré en quelques secondes :
 
 ```powershell
-New-Angular myapp              # menu interactif (base, Material ou PrimeNG)
+New-Angular myapp              # menu interactif (base, Material, PrimeNG ou ng-zorro)
 New-AngularBase myapp          # template Angular + SCSS + Routing de base
 New-AngularMaterial myapp      # scaffold direct avec Angular Material
 New-AngularPrimeNg myapp       # scaffold direct avec PrimeNG
+New-AngularNgZorro myapp       # scaffold direct avec ng-zorro-antd (Ant Design)
 ```
 
-Deux **bibliothèques UI/UX** sont disponibles : **Angular Material** (la bibliothèque officielle d'Angular, avec Material 3 et le thème azure/blue) et **PrimeNG** (80+ composants enterprise, thème Aura). Les raccourcis sont organisés dans un **point d'entrée unique** : une seule ligne suffit dans votre profil PowerShell.
+Trois **bibliothèques UI/UX** sont disponibles : **Angular Material** (la bibliothèque officielle d'Angular, avec Material 3 et le thème azure/blue), **PrimeNG** (80+ composants enterprise, thème Aura) et **ng-zorro-antd** (Ant Design, 70+ composants, i18n). Les raccourcis sont organisés dans un **point d'entrée unique** : une seule ligne suffit dans votre profil PowerShell.
 
 ---
 
@@ -96,7 +99,7 @@ Ajoutez la ligne suivante à votre profil :
 . "$HOME\.config\alias\angular-aliases-project\windows\index.ps1"
 ```
 
-`index.ps1` est le point d'entrée. Il source (`dot-source`) le module Angular Material situé dans son propre répertoire, si bien que les raccourcis fonctionnent quel que soit l'endroit où le projet a été copié.
+`index.ps1` est le point d'entrée. Il source (`dot-source`) les modules Angular Material, PrimeNG et ng-zorro-antd situés dans son propre répertoire, si bien que les raccourcis fonctionnent quel que soit l'endroit où le projet a été copié.
 
 ### 5. Recharger votre profil
 
@@ -111,10 +114,11 @@ Ajoutez la ligne suivante à votre profil :
 Les raccourcis se comportent comme des commandes PowerShell natives :
 
 ```powershell
-New-Angular myapp              # scaffolde un projet (menu interactif 1-3)
+New-Angular myapp              # scaffolde un projet (menu interactif 1-4)
 New-AngularBase myapp          # template Angular + SCSS + Routing de base
 New-AngularMaterial myapp      # Angular + Angular Material (Material 3)
 New-AngularPrimeNg myapp       # Angular + PrimeNG (thème Aura)
+New-AngularNgZorro myapp       # Angular + ng-zorro-antd (Ant Design)
 Get-Help New-Angular           # affiche la documentation commentée
 ```
 
@@ -133,6 +137,7 @@ Affiche un menu interactif, crée le projet avec `ng new` (sans SSR), installe l
 | 1  | Angular CLI (base)      | Plain Angular + TypeScript template           |
 | 2  | Angular CLI + Material  | Official Material Design components (M3)      |
 | 3  | Angular CLI + PrimeNG   | Enterprise-ready UI component library (Aura)  |
+| 4  | Angular CLI + ng-zorro  | Ant Design components (ng-zorro-antd)         |
 
 À la fin de la configuration, le script demande si vous voulez initialiser **Git**, puis lance `npm start` (serveur sur **http://localhost:4200**).
 
@@ -141,6 +146,7 @@ Affiche un menu interactif, crée le projet avec `ng new` (sans SSR), installe l
 ```powershell
 New-AngularMaterial myapp    # Angular Material (Material 3)
 New-AngularPrimeNg myapp     # PrimeNG (thème Aura)
+New-AngularNgZorro myapp     # ng-zorro-antd (Ant Design)
 ```
 
 ### 🖥️ Créer un projet Angular de base
@@ -153,18 +159,18 @@ Crée un projet **Angular + SCSS + Routing** (`ng new`) sans bibliothèque suppl
 
 ### 🧱 Ce que chaque template inclut
 
-| Élément | Material | PrimeNG |
-|---|---|---|
-| **Angular + TypeScript** | `ng new` (SCSS, Routing, sans SSR) | `ng new` (SCSS, Routing, sans SSR) |
-| **Bibliothèque** | `@angular/material`, `@angular/cdk`, `@angular/animations` | `primeng`, `@primeuix/themes`, `primeicons`, `@angular/animations` |
-| **Thème** | Material 3 (azure/blue, Roboto) | Aura (`@primeuix/themes`) |
-| **ToggleMode** | Sélecteur Clair / Sombre / Système (`mat-button-toggle`) | Sélecteur Clair / Sombre / Système (`p-selectbutton`) |
-| **Routing** | Layout par défaut, `/home` + **404** | Layout par défaut, `/home` + **404** |
-| **Icônes** | Material Symbols Outlined | PrimeIcons (`pi pi-*`) |
-| **Git** *(optionnel)* | `git init` + premier commit | `git init` + premier commit |
-| **Serveur de dev** | Port `4200` via `ng serve` | Port `4200` via `ng serve` |
+| Élément | Material | PrimeNG | ng-zorro-antd |
+|---|---|---|---|
+| **Angular + TypeScript** | `ng new` (SCSS, Routing, sans SSR) | `ng new` (SCSS, Routing, sans SSR) | `ng new` (SCSS, Routing, sans SSR) |
+| **Bibliothèque** | `@angular/material`, `@angular/cdk`, `@angular/animations` | `primeng`, `@primeuix/themes`, `primeicons`, `@angular/animations` | `ng-zorro-antd`, `@ant-design/icons-angular`, `@angular/cdk`, `@angular/animations` |
+| **Thème** | Material 3 (azure/blue, Roboto) | Aura (`@primeuix/themes`) | Ant Design (clair/sombre via `ng-zorro-antd.css` + `.dark`) |
+| **ToggleMode** | Sélecteur Clair / Sombre / Système (`mat-button-toggle`) | Sélecteur Clair / Sombre / Système (`p-selectbutton`) | Sélecteur Clair / Sombre / Système (`nz-segmented`) |
+| **Routing** | Layout par défaut, `/home` + **404** | Layout par défaut, `/home` + **404** | Layout par défaut, `/home` + **404** |
+| **Icônes** | Material Symbols Outlined | PrimeIcons (`pi pi-*`) | Ant Design Icons (`nz-icon`) |
+| **Git** *(optionnel)* | `git init` + premier commit | `git init` + premier commit | `git init` + premier commit |
+| **Serveur de dev** | Port `4200` via `ng serve` | Port `4200` via `ng serve` | Port `4200` via `ng serve` |
 
-Le composant **ToggleMode** applique une classe `.dark` sur `<html>` ; le thème bascule alors automatiquement entre mode clair et sombre (variables `--mat-sys-*` pour Material, `--p-*` pour PrimeNG).
+Le composant **ToggleMode** applique une classe `.dark` sur `<html>` ; le thème bascule alors automatiquement entre mode clair et sombre (variables `--mat-sys-*` pour Material, `--p-*` pour PrimeNG, bundle `ng-zorro-antd.dark.css` pour ng-zorro).
 
 ---
 
@@ -176,7 +182,7 @@ Le composant **ToggleMode** applique une classe `.dark` sur `<html>` ; le thème
 
 ```powershell
 Get-Help New-Angular
-Get-Help New-AngularMaterial -Detailed
+Get-Help New-AngularNgZorro -Detailed
 ```
 
 ---
@@ -199,6 +205,6 @@ Remove-Item -Path "$HOME\.config\alias\angular-aliases-project" -Recurse -Force
 | Les raccourcis sont indisponibles | Vérifiez le chemin d'import dans `$PROFILE`, puis rechargez avec `. $PROFILE`. |
 | `❌ node is not recognized` | Installez Node.js 20+ et assurez-vous qu'il est disponible dans le `PATH`. |
 | Le serveur de dev ne démarre pas | Vérifiez que `npm install` a été exécuté par `ng new`. |
-| Les icônes ne s'affichent pas | Material Symbols Outlined est chargée depuis Google Fonts (connexion requise) ; les icônes PrimeIcons sont embarquées avec `primeicons`. |
+| Les icônes ne s'affichent pas | Material Symbols Outlined est chargée depuis Google Fonts (connexion requise) ; PrimeIcons et les icônes Ant Design sont embarquées dans `primeicons` / `@ant-design/icons-angular`. |
 | Le thème ne change pas | Vérifiez que la classe `.dark` est bien appliquée sur `<html>` par `ToggleMode`. |
 | Profil introuvable | Vérifiez que `$PROFILE` existe avec `Test-Path $PROFILE`, en le créant si nécessaire. |
